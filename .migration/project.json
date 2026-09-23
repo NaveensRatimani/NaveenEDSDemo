@@ -1,0 +1,10 @@
+{
+  "type": "da",
+  "sites": {
+    "NaveenEDSDemo": {
+      "previewOrg": "NaveensRatimani",
+      "previewSite": "NaveenEDSDemo",
+      "libraryUrl": "https://main--sta-boilerplate--aemdemos.aem.page/tools/sidekick/library.json"
+    }
+  }
+}
