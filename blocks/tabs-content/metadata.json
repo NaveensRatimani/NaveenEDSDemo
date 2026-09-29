@@ -1,0 +1,19 @@
+{
+  "variantName": "tabs-content",
+  "baseBlock": "tabs",
+  "visualCharacteristics": "Tabbed content switcher. A horizontal row of tab buttons above a bordered panel; clicking a tab reveals its panel. Panels hold rich content (paragraphs, images, lists).",
+  "contentPattern": "Repeating rows; each row = 2 cells: cell 1 = tab label, cell 2 = tab panel content.",
+  "usage": "Tabbed sections such as Overview / Itinerary / What to Bring on adventure detail pages.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": [
+    "tabs-content"
+  ],
+  "usageTracking": {
+    "pagesUsing": [
+      "/us/en/adventures"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-23"
+  }
+}

@@ -8,8 +8,33 @@
       ],
       "representativeUrl": "https://wknd.site/us/en/about-us.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/*"
+      "blocks": [
+        {
+          "name": "cards-contributor",
+          "instances": [
+            ".experiencefragment.cmp-experience-fragment--contributor"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "About Us content",
+          "selector": [
+            "main.cmp-layout-container--fixed",
+            ".cmp-container"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-contributor"
+          ],
+          "defaultContent": [
+            ".title",
+            ".text"
+          ]
+        }
+      ]
     },
     {
       "name": "adventures",
@@ -33,8 +58,81 @@
       ],
       "representativeUrl": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/adventures/*"
+      "blocks": [
+        {
+          "name": "carousel-gallery",
+          "instances": [
+            ".carousel.cmp-carousel--mini"
+          ]
+        },
+        {
+          "name": "columns-specs",
+          "instances": [
+            ".cmp-contentfragment__elements"
+          ]
+        },
+        {
+          "name": "tabs-content",
+          "instances": [
+            ".tabs.panelcontainer"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/adventures/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Breadcrumb",
+          "selector": [
+            ".breadcrumb.cmp-breadcrumb--fixed",
+            ".breadcrumb"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".breadcrumb"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Hero Image Carousel",
+          "selector": [
+            ".carousel.cmp-carousel--mini"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-gallery"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "Page Title",
+          "selector": [
+            ".title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".title.cmp-title--underline"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "Adventure Overview",
+          "selector": [
+            ".cmp-contentfragment__elements"
+          ],
+          "style": null,
+          "blocks": [
+            "columns-specs",
+            "tabs-content"
+          ],
+          "defaultContent": [
+            ".sharing"
+          ]
+        }
+      ]
     },
     {
       "name": "adventures-2",
@@ -43,8 +141,93 @@
       ],
       "representativeUrl": "https://wknd.site/us/en/adventures.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/*"
+      "blocks": [
+        {
+          "name": "hero-feature",
+          "instances": [
+            ".teaser.cmp-teaser--hero"
+          ]
+        },
+        {
+          "name": "tabs-content",
+          "instances": [
+            ".tabs.panelcontainer"
+          ]
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            ".image-list.list"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Page Title",
+          "selector": [
+            ".title.cmp-title--underline:first-of-type",
+            ".title"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".title"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Hero Teaser",
+          "selector": [
+            ".teaser.cmp-teaser--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-feature"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "Current Adventures Heading",
+          "selector": [
+            ".title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".title.cmp-title--underline"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "Adventure Filter Tabs + Cards",
+          "selector": [
+            ".tabs.panelcontainer",
+            ".image-list.list"
+          ],
+          "style": null,
+          "blocks": [
+            "tabs-content",
+            "cards-article"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s5",
+          "name": "Separator",
+          "selector": [
+            ".separator",
+            ".cmp-separator"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".separator"
+          ]
+        }
+      ]
     },
     {
       "name": "faqs",
@@ -53,8 +236,47 @@
       ],
       "representativeUrl": "https://wknd.site/us/en/faqs.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/*"
+      "blocks": [
+        {
+          "name": "accordion-faq",
+          "instances": [
+            ".accordion.panelcontainer"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "FAQs Main Content",
+          "selector": [
+            ".title.cmp-title--underline",
+            ".accordion.panelcontainer"
+          ],
+          "style": null,
+          "blocks": [
+            "accordion-faq"
+          ],
+          "defaultContent": [
+            ".title",
+            ".image",
+            ".text"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Need More Help Sidebar",
+          "selector": [
+            ".text.cmp-text--font-small",
+            ".text"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".text"
+          ]
+        }
+      ]
     },
     {
       "name": "home",
@@ -63,8 +285,103 @@
       ],
       "representativeUrl": "https://wknd.site/us/en.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/*"
+      "blocks": [
+        {
+          "name": "carousel-hero",
+          "instances": [
+            ".carousel.cmp-carousel--hero"
+          ]
+        },
+        {
+          "name": "columns-featured",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            ".image-list.list"
+          ]
+        },
+        {
+          "name": "hero-feature",
+          "instances": [
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+          ]
+        }
+      ],
+      "urlPattern": "/us/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Hero Carousel",
+          "selector": [
+            ".carousel.cmp-carousel--hero"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-hero"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s2",
+          "name": "Featured Article",
+          "selector": [
+            ".teaser.cmp-teaser--featured"
+          ],
+          "style": "grey",
+          "blocks": [
+            "columns-featured"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "Recent Articles",
+          "selector": [
+            ".cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            ".title.cmp-title--underline",
+            ".button"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "Next Adventures - Climbing New Zealand",
+          "selector": [
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-feature"
+          ],
+          "defaultContent": [
+            ".title.cmp-title--underline"
+          ]
+        },
+        {
+          "id": "s5",
+          "name": "Where do you want to go",
+          "selector": [
+            ".image-list.list"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            ".title",
+            ".button"
+          ]
+        }
+      ]
     },
     {
       "name": "magazine",
@@ -77,8 +394,76 @@
       ],
       "representativeUrl": "https://wknd.site/us/en/magazine/arctic-surfing.html",
       "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/us/en/magazine/*"
+      "blocks": [
+        {
+          "name": "cards-upnext",
+          "instances": [
+            ".list.cmp-list--upnext"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/magazine/*",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Lead image",
+          "selector": [
+            "main.cmp-layout-container--fixed .image:first-of-type",
+            ".image"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".image"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Breadcrumb",
+          "selector": [
+            ".breadcrumb.cmp-breadcrumb--fixed",
+            ".breadcrumb"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".breadcrumb"
+          ]
+        },
+        {
+          "id": "s3",
+          "name": "Article body",
+          "selector": [
+            ".text.cmp-text",
+            ".title.cmp-title--article"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".text",
+            ".title",
+            ".image"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "Sidebar (Share this story / Up next)",
+          "selector": [
+            ".list.cmp-list--upnext",
+            ".sharing"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-upnext"
+          ],
+          "defaultContent": [
+            ".sharing"
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
 }

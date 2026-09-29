@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-gallery",
+  "baseBlock": "carousel",
+  "visualCharacteristics": "Full-width, image-only rotating carousel ('mini' style). Each slide is a full-bleed banner photograph with dot indicators and previous/next arrow controls. No overlaid heading, text, or CTA.",
+  "contentPattern": "Repeating slides; each slide = 1 cell containing an image. Multiple rows = multiple slides.",
+  "usage": "Image gallery / photo banner at the top of detail pages, no text overlay.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["carousel-gallery"]
+}

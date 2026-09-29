@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-upnext",
+  "baseBlock": "cards",
+  "visualCharacteristics": "Text-only related-stories list ('Up next'). A vertical list of linked items, each showing a story title and a publish date. No images.",
+  "contentPattern": "Repeating rows; each row = 1 cell containing a linked title and date.",
+  "usage": "Sidebar 'Up next' / related-articles lists on magazine article pages.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["cards-upnext"]
+}

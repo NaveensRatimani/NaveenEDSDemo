@@ -1,0 +1,19 @@
+{
+  "variantName": "cards-article",
+  "baseBlock": "cards",
+  "visualCharacteristics": "Responsive grid of article/adventure cards. Each card has an image on top, a bold title, and a short description; the whole card links out. Typically shown 4-across on desktop, stacking on smaller screens.",
+  "contentPattern": "Repeating cards; each card = 2 cells: cell 1 = image, cell 2 = title (heading) + description. Multiple rows = multiple cards.",
+  "usage": "Article listings, adventure/trip grids, and other repeating card collections.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": [
+    "cards-article"
+  ],
+  "usageTracking": {
+    "pagesUsing": [
+      "/us/en/adventures"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-23"
+  }
+}

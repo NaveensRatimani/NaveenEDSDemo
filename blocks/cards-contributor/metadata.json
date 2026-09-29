@@ -1,0 +1,10 @@
+{
+  "variantName": "cards-contributor",
+  "baseBlock": "cards",
+  "visualCharacteristics": "Grid of contributor/people cards. Each card is centered: a circular avatar image on top, the person's name, a role/skills line, and a row of social icon links. Responsive grid, 3-4 across on desktop.",
+  "contentPattern": "Repeating cards; each card = 2 cells: cell 1 = circular avatar image, cell 2 = name (heading) + role + social links.",
+  "usage": "Team / contributor / author grids showing people with avatar, name, role, and social links.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["cards-contributor"]
+}

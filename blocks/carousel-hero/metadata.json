@@ -1,0 +1,10 @@
+{
+  "variantName": "carousel-hero",
+  "baseBlock": "carousel",
+  "visualCharacteristics": "Full-width rotating hero carousel. Each slide is a full-bleed background photo with an overlaid white content card (heading, short description, one CTA button). Left/right arrow navigation and dot indicators below the slides.",
+  "contentPattern": "Repeating slides; each slide = 2 cells: cell 1 image, cell 2 heading + description + CTA link. Multiple rows = multiple slides.",
+  "usage": "Homepage hero / promotional banner with multiple rotating slides.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["carousel-hero"]
+}

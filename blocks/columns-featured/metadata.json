@@ -1,0 +1,10 @@
+{
+  "variantName": "columns-featured",
+  "baseBlock": "columns",
+  "visualCharacteristics": "Two-column featured teaser on a grey section background. Large image on the left; right column has an eyebrow label, heading, description paragraph, and a CTA button. Stacks vertically on mobile.",
+  "contentPattern": "1 row, 2 columns: cell 1 = image; cell 2 = eyebrow text + heading + description + CTA link.",
+  "usage": "Featured article / promotional teaser with a side-by-side image and text layout.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["columns-featured"]
+}

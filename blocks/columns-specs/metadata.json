@@ -1,0 +1,10 @@
+{
+  "variantName": "columns-specs",
+  "baseBlock": "columns",
+  "visualCharacteristics": "Adventure details specification list: repeating label/value pairs stacked vertically. Uppercase labels above values, each row marked with a yellow accent bar on the left. Light background, no images.",
+  "contentPattern": "Repeating rows; each row = 2 cells: cell 1 = label, cell 2 = value.",
+  "usage": "Key/value spec lists (e.g. adventure details: activity, trip length, group size, difficulty, price).",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["columns-specs"]
+}

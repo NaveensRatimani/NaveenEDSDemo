@@ -1,0 +1,34 @@
+.columns-featured > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-featured img {
+  width: 100%;
+  display: block;
+}
+
+.columns-featured > div > div {
+  order: 1;
+}
+
+.columns-featured > div > .columns-featured-img-col {
+  order: 0;
+}
+
+@media (width >= 900px) {
+  .columns-featured > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 48px;
+  }
+
+  .columns-featured > div > div {
+    flex: 1;
+    order: unset;
+  }
+
+  .columns-featured > div > .columns-featured-img-col {
+    order: unset;
+  }
+}

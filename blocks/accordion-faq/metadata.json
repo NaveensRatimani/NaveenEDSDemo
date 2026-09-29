@@ -1,0 +1,10 @@
+{
+  "variantName": "accordion-faq",
+  "baseBlock": "accordion",
+  "visualCharacteristics": "Collapsible accordion of Q&A pairs. Each item shows a question as a clickable header with a chevron; clicking expands the answer panel below. Bordered items stacked vertically.",
+  "contentPattern": "Repeating rows; each row = 2 cells: cell 1 = question (label), cell 2 = answer (body content).",
+  "usage": "FAQ sections and any collapsible question/answer or show/hide content list.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["accordion-faq"]
+}

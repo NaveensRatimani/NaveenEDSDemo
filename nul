@@ -1,0 +1,194 @@
+{
+  "url": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+  "template": "adventures",
+  "representativeUrl": "https://wknd.site/us/en/adventures/bali-surf-camp.html",
+  "documentPath": "/us/en/adventures/bali-surf-camp",
+  "analyzedAt": "2026-09-23",
+  "notes": "Two-level analysis (sections, then content sequences) for the 'adventures' template representative page. Selectors and hints resolved from migration-work/visual-trees.json for the primary URL. The 'adventures' template has coverageGaps=null in tools/importer/page-templates.json, so only the primary URL was analyzed. Header and footer (experience-fragments) are excluded as auto-populated. Note: the visual-tree section detector surfaced 5 top-level regions (rc1-rc5); the adventure-details content fragment and the social-share widget sit inside the main fixed container between the title (rc4) and the tabs (rc5) and are captured here as sequences within Section 4 with selectors derived from cleaned.html (flagged sourceDerived).",
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "name": "Breadcrumb",
+      "visualStyle": "light background, small padding; text breadcrumb trail",
+      "background": "white/light",
+      "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.breadcrumb.cmp-breadcrumb--fixed.aem-GridColumn.aem-GridColumn--default--12",
+      "hint": "default-content",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Breadcrumb trail: 'Adventures' (link) > 'Bali Surf Camp' (current page). Simple inline navigation text.",
+          "hint": "default-content",
+          "candidateBlock": null,
+          "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.breadcrumb.cmp-breadcrumb--fixed.aem-GridColumn.aem-GridColumn--default--12",
+          "layout": null,
+          "relatedNodes": [
+            "rc1"
+          ]
+        }
+      ]
+    },
+    {
+      "sectionNumber": 2,
+      "name": "Hero Image Carousel",
+      "visualStyle": "full-width, full-bleed background photograph (surfers on a wave); no overlaid text card; carousel dot indicator and previous/next arrows",
+      "background": "image (full-bleed photo, single slide on this page)",
+      "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-carousel > div.cmp-carousel__content > ol.cmp-carousel__indicators",
+      "hint": "block",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Full-width image carousel ('mini' variant): a single full-bleed banner photograph of surfers with carousel dot indicator and previous/next arrow controls. Image-only slides - NO overlaid heading, text, or CTA button.",
+          "hint": "block",
+          "candidateBlock": "carousel",
+          "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > div.carousel.panelcontainer.cmp-carousel--mini.aem-GridColumn.aem-GridColumn--default--12",
+          "layout": "1x1",
+          "relatedNodes": [
+            "rc2",
+            "rc3"
+          ]
+        }
+      ]
+    },
+    {
+      "sectionNumber": 3,
+      "name": "Page Title",
+      "visualStyle": "light background; large underlined H1 heading",
+      "background": "white/light",
+      "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.cmp-layout-container--fixed.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--tablet--12.aem-Grid--default--12.aem-Grid--phone--12 > div.title.cmp-title--underline.aem-GridColumn.aem-GridColumn--default--12",
+      "hint": "default-content",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Large underlined page heading 'Bali Surf Camp' (H1) with a yellow underline accent.",
+          "hint": "default-content",
+          "candidateBlock": null,
+          "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.cmp-layout-container--fixed.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--tablet--12.aem-Grid--default--12.aem-Grid--phone--12 > div.title.cmp-title--underline.aem-GridColumn.aem-GridColumn--default--12",
+          "layout": null,
+          "relatedNodes": [
+            "rc4"
+          ]
+        }
+      ]
+    },
+    {
+      "sectionNumber": 4,
+      "name": "Adventure Overview (two-column: details + tabbed content)",
+      "visualStyle": "light background, two-column layout. Left (narrow) column: a stacked list of adventure detail fields (label above value, each with a yellow accent bar) followed by a 'Share this Adventure' heading and social share icons. Right (wide) column: a tabbed content switcher.",
+      "background": "white/light with standard section padding",
+      "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.cmp-layout-container--fixed.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--tablet--12.aem-Grid--default--12.aem-Grid--phone--12",
+      "hint": "block",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Adventure details specification list: repeating label/value pairs stacked vertically - Activity: Surfing; Adventure Type: Overnight Trip; Trip Length: 6 Days; Group Size: 6; Difficulty: Beginner; Price: 5000.0. Uppercase labels above values, each row marked with a yellow accent bar. Structured, repeating key/value data - not free-form typing.",
+          "hint": "block",
+          "candidateBlock": "columns",
+          "selector": "div.contentfragment.cmp-contentfragment--elements article.cmp-contentfragment--bali-surf-camp dl.cmp-contentfragment__elements",
+          "selectorSource": "sourceDerived (cleaned.html; not surfaced as a distinct visual-tree node)",
+          "layout": "6x1",
+          "relatedNodes": []
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "'Share this Adventure' heading (H5) followed by social share links (Facebook share, Pinterest). Small, simple share affordance.",
+          "hint": "default-content",
+          "candidateBlock": null,
+          "selector": "div.sharing",
+          "selectorSource": "sourceDerived (cleaned.html; not surfaced as a distinct visual-tree node)",
+          "layout": null,
+          "relatedNodes": []
+        },
+        {
+          "sequenceNumber": 3,
+          "description": "Tabbed content switcher with three tabs - 'Overview', 'Itinerary', 'What to Bring'. Overview: intro paragraph + a photo + a follow-up paragraph linking to Surf Camp Costa Rica. Itinerary: bolded break names (Keramas, Nusa Dua, Sanur) each with a descriptive paragraph. What to Bring: a bulleted list. Interactive component requiring decoration.",
+          "hint": "block",
+          "candidateBlock": "tabs",
+          "selector": "body > div.root.container.responsivegrid > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--default--12 > main.container.responsivegrid.cmp-layout-container--fixed.aem-GridColumn.aem-GridColumn--default--12 > div.cmp-container > div.aem-Grid.aem-Grid--12.aem-Grid--tablet--12.aem-Grid--default--12.aem-Grid--phone--12 > div.tabs.panelcontainer.aem-GridColumn--tablet--12.aem-GridColumn--offset--tablet--0.aem-GridColumn--default--none.aem-GridColumn--phone--none.aem-GridColumn--phone--12.aem-GridColumn--tablet--none.aem-GridColumn--default--9.aem-GridColumn.aem-GridColumn--offset--phone--0.aem-GridColumn--offset--default--0",
+          "layout": "3 tabs",
+          "relatedNodes": [
+            "rc5"
+          ]
+        }
+      ]
+    }
+  ],
+  "blockInventory": {
+    "localBlocks": [
+      "cards",
+      "columns",
+      "footer",
+      "fragment",
+      "header",
+      "hero",
+      "widget",
+      "carousel-hero",
+      "columns-featured",
+      "cards-article",
+      "hero-feature"
+    ],
+    "existingCustomVariants": [
+      {
+        "name": "carousel-hero",
+        "baseBlock": "carousel",
+        "characteristics": "Full-width rotating hero carousel; each slide full-bleed photo with overlaid white content card (heading, description, one CTA)."
+      },
+      {
+        "name": "columns-featured",
+        "baseBlock": "columns",
+        "characteristics": "Two-column featured teaser on grey background; large image left, eyebrow+heading+description+CTA right."
+      },
+      {
+        "name": "cards-article",
+        "baseBlock": "cards",
+        "characteristics": "Responsive grid of article/adventure cards; image on top, title, short description; whole card links out."
+      },
+      {
+        "name": "hero-feature",
+        "baseBlock": "hero",
+        "characteristics": "Full-width feature banner; large background photo with overlaid white content card (heading, description, CTA)."
+      }
+    ],
+    "blockCollectionAvailable": [
+      {
+        "name": "table",
+        "purpose": "Tabular data in rows and columns; variants: striped, bordered, no header."
+      },
+      {
+        "name": "columns",
+        "purpose": "Content side by side / stacked label-value pairs; flexible multi-column layout."
+      },
+      {
+        "name": "cards",
+        "purpose": "Grid of distinct items, each with image, title, description; variant 'no images'."
+      },
+      {
+        "name": "video",
+        "purpose": "Embed a stand-alone video with a built-in player."
+      },
+      {
+        "name": "accordion",
+        "purpose": "Collapsible title/content sections, e.g. FAQs."
+      },
+      {
+        "name": "hero",
+        "purpose": "Prominent banner image with headline and optional CTA at top of page."
+      },
+      {
+        "name": "carousel",
+        "purpose": "Rotating/swipable slides, each image with optional title, description, CTA."
+      },
+      {
+        "name": "tabs",
+        "purpose": "Tabbed content switcher; multiple sections behind selectable tabs."
+      },
+      {
+        "name": "search",
+        "purpose": "Site search input backed by a query index."
+      },
+      {
+        "name": "embed",
+        "purpose": "Embed external video or social media content."
+      }
+    ]
+  }
+}

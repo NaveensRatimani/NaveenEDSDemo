@@ -1,0 +1,19 @@
+{
+  "variantName": "hero-feature",
+  "baseBlock": "hero",
+  "visualCharacteristics": "Full-width feature banner: a large background photograph with a white content card overlaid on the bottom-left containing a heading, description, and a CTA button.",
+  "contentPattern": "1 column: one row = background image; one row = heading + description + CTA link.",
+  "usage": "Full-width promotional feature / 'next adventure' banner with an overlaid text card.",
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": [
+    "hero-feature"
+  ],
+  "usageTracking": {
+    "pagesUsing": [
+      "/us/en/adventures"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-23"
+  }
+}

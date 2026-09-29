@@ -1,0 +1,29 @@
+.cards-upnext > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-upnext > ul > li {
+  border-bottom: 1px solid #dadada;
+  padding: 12px 0;
+}
+
+.cards-upnext > ul > li:first-child {
+  border-top: 1px solid #dadada;
+}
+
+.cards-upnext .cards-upnext-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cards-upnext .cards-upnext-item-body a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-decoration: none;
+}
