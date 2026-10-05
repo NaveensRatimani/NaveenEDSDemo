@@ -1,20 +1,188 @@
+/* selectors below target distinct link groups (nav, social, legal),
+   so source order does not need to follow specificity */
+/* stylelint-disable no-descending-specificity */
 footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+  margin-top: 48px;
+  background-color: #202020;
+  color: #ebebeb;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', helvetica, arial, sans-serif;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer {
+  --footer-light-text: #ebebeb;
+  --footer-body-text: #f7f7f7;
+  --footer-social-bg: #ebebeb;
+  --footer-content-width: 1136px;
+
+  padding: 16px 0 24px;
+}
+
+footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+/* 28px gutters on small screens; centered 1136px content on wide screens */
+footer .footer-inner {
+  padding: 0 max(28px, calc((100% - var(--footer-content-width)) / 2));
+}
+
+/* small screens: logo + stacked links side by side, social row below */
+footer .footer-top {
+  display: grid;
+  grid-template-columns: 33.333% 1fr;
+  align-items: start;
+}
+
+/* brand + social links have no hover effect on the source */
+footer .footer-brand a,
+footer .footer-brand a:hover,
+footer .footer-social a,
+footer .footer-social a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* brand */
+footer .footer-brand a {
+  display: block;
+  line-height: 0;
+}
+
+footer .footer-brand img {
+  width: 88px;
+  height: auto;
+  margin: 7px 0;
+}
+
+/* link list (inline links with padding, as in the header) */
+footer .footer-nav {
+  margin: 9px 0 0 10px;
+}
+
+footer .footer-nav li li {
+  margin-bottom: 16px;
+  line-height: 27px;
+}
+
+footer .footer-nav .footer-home {
+  display: none;
+}
+
+footer .footer-nav a {
+  padding: 15px 17px;
+  color: var(--footer-light-text);
+  font-size: 14px;
+  line-height: 21px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+footer .footer-nav a:hover {
+  text-decoration: underline;
+}
+
+footer .footer-nav a[aria-current='page'] {
+  color: var(--footer-body-text);
+}
+
+/* follow us + social buttons */
+footer .footer-social {
+  grid-column: 1 / -1;
+}
+
+footer .footer-social h4 {
+  margin: 21px 0;
+  color: var(--footer-light-text);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-transform: uppercase;
+}
+
+footer .footer-social ul {
+  display: flex;
+}
+
+footer .footer-social a {
+  display: block;
+  box-sizing: border-box;
+  width: 48px;
+  height: 48px;
+  padding: 18px 0 0 14px;
+  background-color: var(--footer-social-bg);
+}
+
+/* icon glyphs are 17.5px tall and left-aligned in the button, like the source icon font */
+footer .footer-social-icon {
+  display: block;
+  width: 22px;
+  height: 17.5px;
+  background-color: #202020;
+  mask: var(--footer-icon) left center / contain no-repeat;
+}
+
+/* copyright + attribution */
+footer .footer-legal {
+  margin-top: 36px;
+  color: var(--footer-body-text);
+  font-size: 12px;
+  line-height: 15px;
+  text-align: justify;
+}
+
+footer .footer-legal p {
+  margin-bottom: 13.5px;
+}
+
+footer .footer-legal a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  footer .footer-brand img {
+    width: 128px;
+  }
+}
+
+/* breakpoint-exception: the source footer switches to its single-row layout at 1025px */
+@media (width >= 1025px) {
+  footer .footer-top {
+    display: flex;
+    height: 62px;
+  }
+
+  footer .footer-nav {
+    margin: 15px 0 0 66px;
+  }
+
+  footer .footer-nav ul ul {
+    display: flex;
+  }
+
+  footer .footer-nav li li {
+    margin-bottom: 0;
+    line-height: inherit;
+  }
+
+  footer .footer-social {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 36px 0 auto;
+  }
+
+  footer .footer-social h4 {
+    margin: 21px 14px 0 0;
+  }
+
+  footer .footer-legal {
+    margin-top: 43px;
   }
 }

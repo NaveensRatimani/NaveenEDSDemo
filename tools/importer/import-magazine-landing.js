@@ -2,7 +2,9 @@
 /* global WebImporter */
 
 // PARSER IMPORTS
-import accordionFaqParser from './parsers/accordion-faq.js';
+import columnsFeaturedParser from './parsers/columns-featured.js';
+import cardsArticleParser from './parsers/cards-article.js';
+import cardsMembersParser from './parsers/cards-members.js';
 
 // TRANSFORMER IMPORTS
 import cleanupTransformer from './transformers/wknd-cleanup.js';
@@ -10,40 +12,93 @@ import sectionsTransformer from './transformers/wknd-sections.js';
 
 // PARSER REGISTRY
 const parsers = {
-  'accordion-faq': accordionFaqParser,
+  'columns-featured': columnsFeaturedParser,
+  'cards-article': cardsArticleParser,
+  'cards-members': cardsMembersParser,
 };
 
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
 const PAGE_TEMPLATE = {
-  name: 'faqs',
-  description: 'WKND FAQs page',
-  urls: [
-    'https://wknd.site/us/en/faqs.html',
+  "name": "magazine-landing",
+  "description": "WKND magazine landing: featured article, article grid, members-only teasers",
+  "urls": [
+    "https://wknd.site/us/en/magazine.html"
   ],
-  blocks: [
+  "blocks": [
     {
-      name: 'accordion-faq',
-      instances: ['.accordion.panelcontainer'],
-    },
-  ],
-  sections: [
-    {
-      id: 's1',
-      name: 'FAQs Main Content',
-      selector: ['.title.cmp-title--underline', '.accordion.panelcontainer'],
-      style: null,
-      blocks: ['accordion-faq'],
-      defaultContent: ['.title', '.image', '.text'],
+      "name": "columns-featured",
+      "instances": [
+        ".teaser.cmp-teaser--featured"
+      ]
     },
     {
-      id: 's2',
-      name: 'Need More Help Sidebar',
-      selector: ['.separator.cmp-separator--hidden + .title', '.text.cmp-text--font-small'],
-      style: 'sidebar',
-      blocks: [],
-      defaultContent: ['.text'],
+      "name": "cards-article",
+      "instances": [
+        ".image-list.list"
+      ]
     },
+    {
+      "name": "cards-members",
+      "instances": [
+        ".teaser.cmp-teaser--secure"
+      ]
+    }
   ],
+  "sections": [
+    {
+      "id": "s1",
+      "name": "Page title",
+      "selector": [
+        ".title"
+      ],
+      "style": null,
+      "blocks": [],
+      "defaultContent": [
+        ".title"
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Featured Article",
+      "selector": [
+        ".teaser.cmp-teaser--featured"
+      ],
+      "style": "grey",
+      "blocks": [
+        "columns-featured"
+      ],
+      "defaultContent": []
+    },
+    {
+      "id": "s3",
+      "name": "All Articles",
+      "selector": [
+        ".title.cmp-title--underline"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-article"
+      ],
+      "defaultContent": [
+        ".title.cmp-title--underline"
+      ]
+    },
+    {
+      "id": "s4",
+      "name": "Members Only",
+      "selector": [
+        ".image-list.list + .title.cmp-title--underline"
+      ],
+      "style": null,
+      "blocks": [
+        "cards-members"
+      ],
+      "defaultContent": [
+        ".title.cmp-title--underline",
+        ".text"
+      ]
+    }
+  ]
 };
 
 // TRANSFORMER REGISTRY - cleanup first, sections after (sections only when 2+ sections)

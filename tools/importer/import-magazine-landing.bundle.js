@@ -35,42 +35,14 @@ var CustomImportScript = (() => {
   };
   var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-  // tools/importer/import-home.js
-  var import_home_exports = {};
-  __export(import_home_exports, {
-    default: () => import_home_default
+  // tools/importer/import-magazine-landing.js
+  var import_magazine_landing_exports = {};
+  __export(import_magazine_landing_exports, {
+    default: () => import_magazine_landing_default
   });
 
-  // tools/importer/parsers/carousel-hero.js
-  function parse(element, { document: document2 }) {
-    let slides = Array.from(element.querySelectorAll(".cmp-carousel__item"));
-    if (!slides.length) {
-      slides = Array.from(element.querySelectorAll(".cmp-teaser--hero, .teaser"));
-    }
-    const cells = [];
-    slides.forEach((slide) => {
-      const image = slide.querySelector(".cmp-teaser__image img, .cmp-image img, img");
-      const contentCell = [];
-      const heading = slide.querySelector('.cmp-teaser__title, h1, h2, h3, [class*="title"]');
-      const description = slide.querySelector('.cmp-teaser__description, [class*="description"], p');
-      const ctaLinks = Array.from(slide.querySelectorAll('.cmp-teaser__action-link, a.button, [class*="action"] a'));
-      if (heading) contentCell.push(heading);
-      if (description) contentCell.push(description);
-      contentCell.push(...ctaLinks);
-      if (image || contentCell.length) {
-        cells.push([image || "", contentCell]);
-      }
-    });
-    if (!cells.length) {
-      element.replaceWith(...element.childNodes);
-      return;
-    }
-    const block = WebImporter.Blocks.createBlock(document2, { name: "carousel-hero", cells });
-    element.replaceWith(block);
-  }
-
   // tools/importer/parsers/columns-featured.js
-  function parse2(element, { document: document2 }) {
+  function parse(element, { document: document2 }) {
     const image = element.querySelector(".cmp-teaser__image img, .cmp-image img, img");
     const textCell = [];
     const eyebrow = element.querySelector('.cmp-teaser__pretitle, [class*="pretitle"], [class*="eyebrow"]');
@@ -91,7 +63,7 @@ var CustomImportScript = (() => {
   }
 
   // tools/importer/parsers/cards-article.js
-  function parse3(element, { document: document2 }) {
+  function parse2(element, { document: document2 }) {
     let cards = Array.from(element.querySelectorAll("li.cmp-image-list__item"));
     if (!cards.length) {
       cards = Array.from(element.querySelectorAll(".cmp-image-list__item-content, article"));
@@ -118,29 +90,46 @@ var CustomImportScript = (() => {
     element.replaceWith(block);
   }
 
-  // tools/importer/parsers/hero-feature.js
-  function parse4(element, { document: document2 }) {
-    const cells = [];
-    const image = element.querySelector(".cmp-teaser__image img, .cmp-image img, img");
-    if (image) {
-      cells.push([[image]]);
+  // tools/importer/parsers/cards-members.js
+  function parse3(element, { document: document2 }) {
+    const teasers = [element];
+    let next = element.nextElementSibling;
+    while (next && next.matches(".teaser.cmp-teaser--secure")) {
+      teasers.push(next);
+      next = next.nextElementSibling;
     }
-    const contentCell = [];
-    const heading = element.querySelector(".cmp-teaser__title, h1, h2, h3, h4");
-    const description = element.querySelector('.cmp-teaser__description, [class*="description"], p');
-    const ctaLinks = Array.from(element.querySelectorAll('.cmp-teaser__action-link, a.button, [class*="action"] a'));
-    if (heading) contentCell.push(heading);
-    if (description) contentCell.push(description);
-    contentCell.push(...ctaLinks);
-    if (!image && !contentCell.length) {
+    const cells = [];
+    teasers.forEach((teaser) => {
+      const image = teaser.querySelector(".cmp-teaser__image img, img");
+      const contentCell = [];
+      const title = teaser.querySelector(".cmp-teaser__title, h2, h3");
+      const description = teaser.querySelector(".cmp-teaser__description");
+      const cta = teaser.querySelector(".cmp-teaser__action-container");
+      if (title) {
+        const heading = document2.createElement("h3");
+        heading.textContent = title.textContent.trim();
+        contentCell.push(heading);
+      }
+      if (description && description.textContent.trim()) {
+        const p = document2.createElement("p");
+        p.textContent = description.textContent.trim();
+        contentCell.push(p);
+      }
+      if (cta && cta.textContent.trim()) {
+        const p = document2.createElement("p");
+        p.textContent = cta.textContent.trim();
+        contentCell.push(p);
+      }
+      if (image || contentCell.length) {
+        cells.push([image || "", contentCell]);
+      }
+    });
+    if (!cells.length) {
       element.replaceWith(...element.childNodes);
       return;
     }
-    if (contentCell.length) {
-      cells.push([contentCell]);
-    }
-    const variant = element.classList.contains("cmp-teaser--imagebottom") ? " (image-bottom)" : "";
-    const block = WebImporter.Blocks.createBlock(document2, { name: `hero-feature${variant}`, cells });
+    const block = WebImporter.Blocks.createBlock(document2, { name: "cards-members", cells });
+    teasers.slice(1).forEach((teaser) => teaser.remove());
     element.replaceWith(block);
   }
 
@@ -256,77 +245,91 @@ var CustomImportScript = (() => {
     }
   }
 
-  // tools/importer/import-home.js
+  // tools/importer/import-magazine-landing.js
   var parsers = {
-    "carousel-hero": parse,
-    "columns-featured": parse2,
-    "cards-article": parse3,
-    "hero-feature": parse4
+    "columns-featured": parse,
+    "cards-article": parse2,
+    "cards-members": parse3
   };
   var PAGE_TEMPLATE = {
-    name: "home",
-    description: "WKND homepage",
-    urls: [
-      "https://wknd.site/us/en.html"
+    "name": "magazine-landing",
+    "description": "WKND magazine landing: featured article, article grid, members-only teasers",
+    "urls": [
+      "https://wknd.site/us/en/magazine.html"
     ],
-    blocks: [
+    "blocks": [
       {
-        name: "carousel-hero",
-        instances: [".carousel.cmp-carousel--hero"]
+        "name": "columns-featured",
+        "instances": [
+          ".teaser.cmp-teaser--featured"
+        ]
       },
       {
-        name: "columns-featured",
-        instances: [".teaser.cmp-teaser--featured"]
+        "name": "cards-article",
+        "instances": [
+          ".image-list.list"
+        ]
       },
       {
-        name: "cards-article",
-        instances: [".image-list.list"]
-      },
-      {
-        name: "hero-feature",
-        instances: [".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"]
+        "name": "cards-members",
+        "instances": [
+          ".teaser.cmp-teaser--secure"
+        ]
       }
     ],
-    sections: [
+    "sections": [
       {
-        id: "s1",
-        name: "Hero Carousel",
-        selector: [".carousel.cmp-carousel--hero"],
-        style: null,
-        blocks: ["carousel-hero"],
-        defaultContent: []
+        "id": "s1",
+        "name": "Page title",
+        "selector": [
+          ".title"
+        ],
+        "style": null,
+        "blocks": [],
+        "defaultContent": [
+          ".title"
+        ]
       },
       {
-        id: "s2",
-        name: "Featured Article",
-        selector: [".teaser.cmp-teaser--featured"],
-        style: "grey",
-        blocks: ["columns-featured"],
-        defaultContent: []
+        "id": "s2",
+        "name": "Featured Article",
+        "selector": [
+          ".teaser.cmp-teaser--featured"
+        ],
+        "style": "grey",
+        "blocks": [
+          "columns-featured"
+        ],
+        "defaultContent": []
       },
       {
-        id: "s3",
-        name: "Recent Articles",
-        selector: [".cmp-title--underline"],
-        style: null,
-        blocks: ["cards-article"],
-        defaultContent: [".title.cmp-title--underline", ".button"]
+        "id": "s3",
+        "name": "All Articles",
+        "selector": [
+          ".title.cmp-title--underline"
+        ],
+        "style": null,
+        "blocks": [
+          "cards-article"
+        ],
+        "defaultContent": [
+          ".title.cmp-title--underline"
+        ]
       },
       {
-        id: "s4",
-        name: "Next Adventures - Climbing New Zealand",
-        selector: [".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"],
-        style: null,
-        blocks: ["hero-feature"],
-        defaultContent: [".title.cmp-title--underline"]
-      },
-      {
-        id: "s5",
-        name: "Where do you want to go",
-        selector: [".image-list.list"],
-        style: null,
-        blocks: ["cards-article"],
-        defaultContent: [".title", ".button"]
+        "id": "s4",
+        "name": "Members Only",
+        "selector": [
+          ".image-list.list + .title.cmp-title--underline"
+        ],
+        "style": null,
+        "blocks": [
+          "cards-members"
+        ],
+        "defaultContent": [
+          ".title.cmp-title--underline",
+          ".text"
+        ]
       }
     ]
   };
@@ -367,7 +370,7 @@ var CustomImportScript = (() => {
     console.log(`Found ${pageBlocks.length} block instances on page`);
     return pageBlocks;
   }
-  var import_home_default = {
+  var import_magazine_landing_default = {
     transform: (payload) => {
       const { document: document2, url, html, params } = payload;
       const main = document2.body;
@@ -405,5 +408,5 @@ var CustomImportScript = (() => {
       }];
     }
   };
-  return __toCommonJS(import_home_exports);
+  return __toCommonJS(import_magazine_landing_exports);
 })();

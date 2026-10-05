@@ -1,57 +1,158 @@
+/*
+ * Adventure detail tabs (Overview / Itinerary / What to Bring).
+ * Values extracted from the source .cmp-tabs; identical at every width.
+ */
+
+/* tab list: flush, wrapping row of uppercase tabs */
 .tabs-content .tabs-content-list {
   display: flex;
-  gap: 0.5ch;
-  max-width: 100%;
-  font-size: var(--body-font-size-xs);
-  overflow-x: auto;
-}
-
-@media (width >= 600px) {
-  .tabs-content .tabs-content-list {
-    font-size: var(--body-font-size-s);
-  }
-}
-
-@media (width >= 900px) {
-  .tabs-content .tabs-content-list {
-    font-size: var(--body-font-size-m);
-  }
+  flex-wrap: wrap;
+  margin: 18px 0;
+  padding: 0;
 }
 
 .tabs-content .tabs-content-list button {
-  flex: 0 0 max-content;
+  box-sizing: border-box;
+  min-width: 48px;
+  max-height: 48px;
   margin: 0;
-  border: 1px solid #dadada;
+  border: 0;
+  border-bottom: 1px solid transparent;
   border-radius: 0;
-  padding: 0.5em;
-  background-color: var(--light-color);
-  color: initial;
-  font-weight: bold;
-  line-height: unset;
-  text-align: initial;
-  text-overflow: unset;
-  overflow: unset;
-  white-space: unset;
-  transition: background-color 0.2s;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 400;
+  line-height: 21px;
+  text-align: left;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.tabs-content .tabs-content-list button p {
+.tabs-content .tabs-content-tab p {
   margin: 0;
+  line-height: inherit;
 }
 
+/* the source has no hover change; only the active tab is filled */
 .tabs-content .tabs-content-list button[aria-selected='true'] {
-  border-bottom: 1px solid var(--background-color);
-  background-color: var(--background-color);
-  cursor: initial;
+  background-color: var(--dark-color);
+  color: var(--background-color);
 }
 
+.tabs-content .tabs-content-list button:focus {
+  outline: none;
+}
+
+.tabs-content .tabs-content-list button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* panels */
 .tabs-content .tabs-content-panel {
-  margin-top: -1px;
-  padding: 24px;
-  border: 1px solid #dadada;
-  overflow: auto;
+  display: flow-root;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
 }
 
 .tabs-content .tabs-content-panel[aria-hidden='true'] {
   display: none;
+}
+
+.tabs-content .tabs-content-panel h2,
+.tabs-content .tabs-content-panel h3 {
+  margin: 27px 0 13.5px;
+  color: var(--text-color);
+  font-family: var(--heading-font-family);
+  font-weight: 400;
+}
+
+.tabs-content .tabs-content-panel h2 {
+  font-size: var(--heading-font-size-xl);
+  line-height: 54px;
+}
+
+.tabs-content .tabs-content-panel h3 {
+  font-size: var(--heading-font-size-l);
+  line-height: 36px;
+}
+
+/* on the source, copy and a following heading keep both margins (no collapse) */
+.tabs-content .tabs-content-panel :is(p, ul, ol) + :is(h2, h3) {
+  margin-top: 40.5px;
+}
+
+/* a leading (imported) title sits 18px below the tabs, like the source copy */
+.tabs-content .tabs-content-panel > div > h3:first-child {
+  margin-top: 0;
+}
+
+/* editorial copy: airy, justified paragraphs */
+.tabs-content .tabs-content-panel p {
+  margin: 0 0 13.5px;
+  color: var(--text-color);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  line-height: 45px;
+  text-align: justify;
+}
+
+.tabs-content .tabs-content-panel strong,
+.tabs-content .tabs-content-panel b {
+  font-weight: 700;
+}
+
+/*
+ * full-width image: 7px above and below, then an optional caption
+ * (authored as text after the picture) in small bold uppercase
+ */
+.tabs-content .tabs-content-panel p:has(> picture, > img) {
+  display: flow-root;
+  margin: 0 0 3.5px;
+  font-size: var(--body-font-size-xs);
+  font-weight: 600;
+  line-height: 21px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.tabs-content .tabs-content-panel picture {
+  display: block;
+  padding-bottom: 3.5px;
+}
+
+.tabs-content .tabs-content-panel img {
+  display: block;
+  width: 100%;
+  margin: 7px 0;
+}
+
+/* bulleted list with small right-pointing triangles */
+.tabs-content .tabs-content-panel ul {
+  margin: 18px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tabs-content .tabs-content-panel li {
+  padding-left: 12px;
+  line-height: 36px;
+}
+
+.tabs-content .tabs-content-panel li::before {
+  content: '';
+  display: inline-block;
+  position: relative;
+  left: -6px;
+  width: 0;
+  height: 0;
+  margin-right: 4px;
+  border-top: 3.5px solid transparent;
+  border-bottom: 3.5px solid transparent;
+  border-left: 5px solid currentcolor;
+  vertical-align: middle;
 }

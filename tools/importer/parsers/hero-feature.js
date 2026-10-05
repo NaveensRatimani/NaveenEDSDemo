@@ -6,9 +6,12 @@
  * Generated: 2026-09-23
  *
  * Structure (from library-description.txt): 1 COLUMN, 3 rows.
- *   Row 1 = block name.
+ *   Row 1 = block name (+ optional variant).
  *   Row 2 = background image (optional), in its single cell.
  *   Row 3 = title + subheading/description + CTA, in its single cell.
+ *
+ * Variant: source teasers with cmp-teaser--imagebottom anchor their photo to
+ * the bottom edge; they import as "hero-feature (image-bottom)".
  *
  * structure.json: single instance, no meaningful repeating unit, no
  * nested-interactive warnings. 1-column shape — every content row is
@@ -44,6 +47,7 @@ export default function parse(element, { document }) {
     cells.push([contentCell]); // 1-column row: one cell holding all content.
   }
 
-  const block = WebImporter.Blocks.createBlock(document, { name: 'hero-feature', cells });
+  const variant = element.classList.contains('cmp-teaser--imagebottom') ? ' (image-bottom)' : '';
+  const block = WebImporter.Blocks.createBlock(document, { name: `hero-feature${variant}`, cells });
   element.replaceWith(block);
 }

@@ -46,9 +46,42 @@ function rewriteInternalLinks(element) {
   });
 }
 
+/**
+ * Standalone WKND buttons (e.g. "All Articles", "All Trips") become bold links,
+ * which Edge Delivery decorates as buttons. Icon-only buttons (social links) are
+ * left alone; buttons inside blocks are handled by the block parsers.
+ */
+function boldStandaloneButtons(element, document) {
+  element.querySelectorAll('.button:not(.cmp-button--icononly) a.cmp-button').forEach((a) => {
+    const label = (a.querySelector('.cmp-button__text') || a).textContent.trim();
+    if (!label || a.closest('strong')) return;
+    a.textContent = label;
+    const strong = document.createElement('strong');
+    a.replaceWith(strong);
+    strong.append(a);
+  });
+}
+
+/**
+ * Page titles only carry the yellow underline when the source title uses the
+ * .cmp-title--underline style (FAQs, adventure detail pages). Mark the section
+ * holding such an h1 with the "title-underline" section style.
+ */
+function markUnderlinedPageTitles(element, document) {
+  element.querySelectorAll('.title.cmp-title--underline').forEach((title) => {
+    if (!title.querySelector('h1')) return;
+    const metadata = WebImporter.Blocks.createBlock(document, {
+      name: 'Section Metadata',
+      cells: { style: 'title-underline' },
+    });
+    title.after(metadata);
+  });
+}
+
 export default function transform(hookName, element, payload) {
   if (hookName === TransformHook.beforeTransform) {
     flattenListFilterTabs(element);
+    boldStandaloneButtons(element, payload.document);
 
     // Non-authorable global chrome that could interfere with block parsing.
     // Verified in cleaned.html:
@@ -59,10 +92,14 @@ export default function transform(hookName, element, payload) {
       '#destination_publishing_iframe_wkndsite_0',
       '#toggleNav',
       '#mobileNav',
+      // content fragment titles repeat the page title and are always hidden on the source
+      '.cmp-contentfragment__title',
     ]);
   }
 
   if (hookName === TransformHook.afterTransform) {
+    markUnderlinedPageTitles(element, payload.document);
+
     // Header and footer are auto-populated experience fragments — excluded from content.
     // Verified in cleaned.html:
     //   header.cmp-experiencefragment--header — line 5

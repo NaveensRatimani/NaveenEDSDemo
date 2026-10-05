@@ -3,8 +3,7 @@
     {
       "name": "about-us",
       "urls": [
-        "https://wknd.site/us/en/about-us.html",
-        "https://wknd.site/us/en/magazine.html"
+        "https://wknd.site/us/en/about-us.html"
       ],
       "representativeUrl": "https://wknd.site/us/en/about-us.html",
       "description": "To be named in naming step",
@@ -259,10 +258,10 @@
           "id": "s2",
           "name": "Need More Help Sidebar",
           "selector": [
-            ".text.cmp-text--font-small",
-            ".text"
+            ".separator.cmp-separator--hidden + .title",
+            ".text.cmp-text--font-small"
           ],
-          "style": null,
+          "style": "sidebar",
           "blocks": [],
           "defaultContent": [
             ".text"
@@ -438,13 +437,26 @@
           ]
         },
         {
+          "id": "s3b",
+          "name": "Author byline",
+          "selector": [
+            ".experiencefragment:has(.cmp-byline)"
+          ],
+          "style": "byline",
+          "blocks": [],
+          "defaultContent": [
+            ".experiencefragment"
+          ]
+        },
+        {
           "id": "s4",
           "name": "Sidebar (Share this story / Up next)",
           "selector": [
-            ".list.cmp-list--upnext",
-            ".sharing"
+            ".cmp-layoutcontainer--sidebar",
+            ".sharing",
+            ".list.cmp-list--upnext"
           ],
-          "style": null,
+          "style": "sidebar",
           "blocks": [
             "cards-upnext"
           ],
@@ -453,9 +465,76 @@
           ]
         }
       ]
-    }
-  ],
-  "metadata": {
-    "projectType": "da"
-  }
-}
+    },
+    {
+      "name": "magazine-landing",
+      "urls": [
+        "https://wknd.site/us/en/magazine.html"
+      ],
+      "representativeUrl": "https://wknd.site/us/en/magazine.html",
+      "description": "WKND magazine landing: featured article, article grid, members-only teasers",
+      "blocks": [
+        {
+          "name": "columns-featured",
+          "instances": [
+            ".teaser.cmp-teaser--featured"
+          ]
+        },
+        {
+          "name": "cards-article",
+          "instances": [
+            ".image-list.list"
+          ]
+        },
+        {
+          "name": "cards-members",
+          "instances": [
+            ".teaser.cmp-teaser--secure"
+          ]
+        }
+      ],
+      "urlPattern": "/us/en/magazine",
+      "sections": [
+        {
+          "id": "s1",
+          "name": "Page title",
+          "selector": [
+            ".title"
+          ],
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            ".title"
+          ]
+        },
+        {
+          "id": "s2",
+          "name": "Featured Article",
+          "selector": [
+            ".teaser.cmp-teaser--featured"
+          ],
+          "style": "grey",
+          "blocks": [
+            "columns-featured"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "s3",
+          "name": "All Articles",
+          "selector": [
+            ".title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-article"
+          ],
+          "defaultContent": [
+            ".title.cmp-title--underline"
+          ]
+        },
+        {
+          "id": "s4",
+          "name": "Members Only",
+          "selector": [
+            ".image-list.list + .title.cmp-tit

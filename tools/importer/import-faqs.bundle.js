@@ -105,16 +105,40 @@ var CustomImportScript = (() => {
       a.setAttribute("href", `${path}${url.search}${url.hash}`);
     });
   }
+  function boldStandaloneButtons(element, document2) {
+    element.querySelectorAll(".button:not(.cmp-button--icononly) a.cmp-button").forEach((a) => {
+      const label = (a.querySelector(".cmp-button__text") || a).textContent.trim();
+      if (!label || a.closest("strong")) return;
+      a.textContent = label;
+      const strong = document2.createElement("strong");
+      a.replaceWith(strong);
+      strong.append(a);
+    });
+  }
+  function markUnderlinedPageTitles(element, document2) {
+    element.querySelectorAll(".title.cmp-title--underline").forEach((title) => {
+      if (!title.querySelector("h1")) return;
+      const metadata = WebImporter.Blocks.createBlock(document2, {
+        name: "Section Metadata",
+        cells: { style: "title-underline" }
+      });
+      title.after(metadata);
+    });
+  }
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
       flattenListFilterTabs(element);
+      boldStandaloneButtons(element, payload.document);
       WebImporter.DOMUtils.remove(element, [
         "#destination_publishing_iframe_wkndsite_0",
         "#toggleNav",
-        "#mobileNav"
+        "#mobileNav",
+        // content fragment titles repeat the page title and are always hidden on the source
+        ".cmp-contentfragment__title"
       ]);
     }
     if (hookName === TransformHook.afterTransform) {
+      markUnderlinedPageTitles(element, payload.document);
       WebImporter.DOMUtils.remove(element, [
         "header",
         "footer",
@@ -197,8 +221,8 @@ var CustomImportScript = (() => {
       {
         id: "s2",
         name: "Need More Help Sidebar",
-        selector: [".text.cmp-text--font-small", ".text"],
-        style: null,
+        selector: [".separator.cmp-separator--hidden + .title", ".text.cmp-text--font-small"],
+        style: "sidebar",
         blocks: [],
         defaultContent: [".text"]
       }

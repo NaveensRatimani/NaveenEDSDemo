@@ -1,0 +1,31 @@
+/* WKND brand tokens (extracted from wknd.site) */
+:root {
+  /* fonts (self-hosted in /fonts, registered in fonts.css) */
+  --heading-font-family: asar, georgia, 'Times New Roman', times, serif;
+  --body-font-family: 'Source Sans Pro', 'Helvetica Neue', helvetica, arial, sans-serif;
+
+  /* colors */
+  --background-color: #fff;
+  --text-color: #202020;
+  --link-color: #0045ff;
+  --link-hover-color: #0045ff;
+  --accent-color: #ffea00;
+  --light-color: #ebebeb;
+  --dark-color: #202020;
+  --divider-color: #ebebeb;
+
+  /* type scale (same at every width on the source) */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+  --heading-font-size-xxl: 40px;
+  --heading-font-size-xl: 36px;
+  --heading-font-size-l: 24px;
+  --heading-font-size-m: 16px;
+  --heading-font-size-s: 14px;
+  --heading-font-size-xs: 12px;
+
+  /* layout */
+  --content-max-width: 1136px;
+  --content-gutter: 14px;
+}

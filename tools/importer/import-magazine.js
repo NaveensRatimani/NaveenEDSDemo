@@ -52,10 +52,18 @@ const PAGE_TEMPLATE = {
       defaultContent: ['.text', '.title', '.image'],
     },
     {
+      id: 's3b',
+      name: 'Author byline',
+      selector: ['.experiencefragment:has(.cmp-byline)'],
+      style: 'byline',
+      blocks: [],
+      defaultContent: ['.experiencefragment'],
+    },
+    {
       id: 's4',
       name: 'Sidebar (Share this story / Up next)',
-      selector: ['.list.cmp-list--upnext', '.sharing'],
-      style: null,
+      selector: ['.cmp-layoutcontainer--sidebar', '.sharing', '.list.cmp-list--upnext'],
+      style: 'sidebar',
       blocks: ['cards-upnext'],
       defaultContent: ['.sharing'],
     },
@@ -156,15 +164,3 @@ export default {
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
     const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
-
-    return [{
-      element: main,
-      path,
-      report: {
-        title: document.title,
-        template: PAGE_TEMPLATE.name,
-        blocks: pageBlocks.map((b) => b.name),
-      },
-    }];
-  },
-};

@@ -16,7 +16,7 @@ const parsers = {
 // PAGE TEMPLATE CONFIGURATION - Embedded from page-templates.json
 const PAGE_TEMPLATE = {
   name: 'about-us',
-  description: 'WKND about-us and magazine landing pages',
+  description: 'WKND about-us page',
   urls: [
     'https://wknd.site/us/en/about-us.html',
   ],

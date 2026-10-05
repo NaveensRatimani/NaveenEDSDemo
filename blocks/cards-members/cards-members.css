@@ -1,0 +1,98 @@
+/*
+ * Members-only cards (wknd .cmp-teaser--secure): faded, locked teasers with a
+ * yellow corner lock badge, uppercase title/description, a grey disabled
+ * "Read More" label and the image below. Cards are 1/3 of a 1164px row.
+ */
+.cards-members {
+  padding-top: 36px;
+  border-top: 2px solid var(--light-color);
+}
+
+.cards-members > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 36px -14px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cards-members > ul > li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 14px;
+}
+
+/* yellow corner badge with a lock glyph */
+.cards-members > ul > li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 14px;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 18'%3E%3Cpath d='M7 0a5 5 0 0 0-5 5v3H1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1h-1V5a5 5 0 0 0-5-5Zm-3 5a3 3 0 0 1 6 0v3H4Z'/%3E%3C/svg%3E") 12px 14px / 14px 22px no-repeat,
+    linear-gradient(135deg, var(--accent-color) 50%, transparent 50%);
+}
+
+.cards-members .cards-members-card-body {
+  opacity: 0.6;
+}
+
+.cards-members .cards-members-card-body h3 {
+  margin: 9px 0;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  line-height: 27px;
+  text-transform: uppercase;
+}
+
+.cards-members .cards-members-card-body p {
+  margin: 0 0 13.5px;
+  color: #696969;
+  font-size: var(--body-font-size-xs);
+  line-height: 24.5px;
+  text-transform: uppercase;
+}
+
+.cards-members .cards-members-card-body p.cards-members-card-action {
+  display: inline-block;
+  margin: 14px 0;
+  padding: 7px 14px;
+  background-color: var(--light-color);
+  line-height: 21px;
+  cursor: not-allowed;
+}
+
+.cards-members .cards-members-card-image {
+  order: 1;
+  opacity: 0.6;
+}
+
+.cards-members .cards-members-card-image picture {
+  display: block;
+}
+
+.cards-members .cards-members-card-image img {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: 200px;
+  margin: 7px 0;
+  object-fit: cover;
+}
+
+@media (width >= 600px) {
+  .cards-members > ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1200px) {
+  .cards-members > ul {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
