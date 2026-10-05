@@ -1,3 +1,20 @@
+/* full-bleed: release the section's 1136px content column for this block */
+.carousel-gallery-container .carousel-gallery-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+/*
+ * The source block is 448px tall (421px slide + 27px control row) and the following
+ * heading starts 27px below it. The negative margin collapses with the section's 40px
+ * bottom margin to give that 27px.
+ */
+.carousel-gallery {
+  max-width: 1680px;
+  margin: 0 auto -13px;
+  color: var(--text-color);
+}
+
 .carousel-gallery .carousel-gallery-slides-container {
   position: relative;
 }
@@ -9,11 +26,13 @@
   padding: 0;
 }
 
+/* slides */
 .carousel-gallery .carousel-gallery-slides {
   display: flex;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   overflow: scroll clip;
+  scrollbar-width: none;
 }
 
 .carousel-gallery .carousel-gallery-slides::-webkit-scrollbar {
@@ -25,109 +44,100 @@
   scroll-snap-align: start;
   position: relative;
   width: 100%;
-  min-height: min(50vw, calc(100dvh - var(--header-height)));
 }
 
-/* image-only slides: image fills the slide */
+/* image-only slide: 400px banner, cropped to cover; 7px above and 14px below, as on the source */
 .carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image {
-  position: absolute;
-  inset: 0;
+  padding: 7px 0 14px;
   line-height: 0;
 }
 
 .carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image picture {
   display: block;
-  width: 100%;
-  height: 100%;
 }
 
-.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image picture > img {
-  height: 100%;
+.carousel-gallery .carousel-gallery-slide .carousel-gallery-slide-image img {
+  display: block;
   width: 100%;
+  height: 400px;
   object-fit: cover;
 }
 
+/* dot indicators: centered in the space left of the arrows */
 .carousel-gallery .carousel-gallery-slide-indicators {
+  box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
+  align-items: flex-start;
   justify-content: center;
-  gap: 6px 12px;
-  padding: 12px;
+  height: 27px;
+  padding: 9px 83px 0 0;
   line-height: 0;
-  position: absolute;
-  bottom: 12px;
-  left: 0;
-  right: 0;
-  z-index: 1;
+}
+
+.carousel-gallery .carousel-gallery-slide-indicator {
+  margin: 0 7px;
 }
 
 .carousel-gallery .carousel-gallery-slide-indicator button {
-  width: 12px;
-  height: 12px;
+  display: block;
+  width: 10px;
+  height: 10px;
   margin: 0;
-  padding: 0;
+  border: 0;
   border-radius: 50%;
-  background-color: #dadada;
-  transition: background-color 0.2s;
+  padding: 0;
+  background-color: rgb(175 175 175);
+  cursor: pointer;
 }
 
-.carousel-gallery .carousel-gallery-slide-indicator button:disabled,
-.carousel-gallery .carousel-gallery-slide-indicator button:hover,
+.carousel-gallery .carousel-gallery-slide-indicator button:disabled {
+  background-color: rgb(0 0 0 / 80%);
+  cursor: default;
+}
+
 .carousel-gallery .carousel-gallery-slide-indicator button:focus-visible {
-  background-color: var(--text-color, #131313);
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }
 
+/* previous / next arrows: just below the slides, right-aligned */
 .carousel-gallery .carousel-gallery-navigation-buttons {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  top: 100%;
+  right: 0;
   z-index: 1;
+  display: flex;
+  gap: 18px;
+  padding-right: 13px;
 }
 
 /* stylelint-disable-next-line no-descending-specificity */
 .carousel-gallery .carousel-gallery-navigation-buttons button {
-  position: relative;
-  width: 44px;
-  height: 44px;
+  box-sizing: border-box;
+  width: 26px;
+  height: 24px;
   margin: 0;
-  border-radius: 50%;
-  padding: 0;
-  background-color: rgb(19 19 19 / 25%);
-  transition: background-color 0.2s;
-}
-
-.carousel-gallery .carousel-gallery-navigation-buttons button:hover,
-.carousel-gallery .carousel-gallery-navigation-buttons button:focus-visible {
-  background-color: rgb(19 19 19 / 75%);
+  border: 0;
+  padding: 1px 0 1px 6px;
+  background-color: transparent;
+  color: #000;
+  cursor: pointer;
 }
 
 .carousel-gallery .carousel-gallery-navigation-buttons button::after {
-  display: block;
   content: '';
-  border: 2px solid;
-  border-bottom: 0;
-  border-left: 0;
-  height: 12px;
-  width: 12px;
-  position: absolute;
-  top: 50%;
-  left: calc(50% + 2px);
-  transform: translate(-50%, -50%) rotate(-135deg);
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23000' stroke-width='1.5'%3E%3Cpath d='M20 10H1.5M10.5 1 1.5 10l9 9'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
 .carousel-gallery .carousel-gallery-navigation-buttons button.slide-next::after {
-  transform: translate(-50%, -50%) rotate(45deg);
-  left: calc(50% - 2px);
+  transform: scaleX(-1);
 }
 
-@media (width >= 600px) {
-  .carousel-gallery .carousel-gallery-navigation-buttons {
-    left: 24px;
-    right: 24px;
-  }
+/* stylelint-disable-next-line no-descending-specificity */
+.carousel-gallery .carousel-gallery-navigation-buttons button:focus-visible {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
 }

@@ -38,8 +38,8 @@ const PAGE_TEMPLATE = {
     {
       id: 's2',
       name: 'Need More Help Sidebar',
-      selector: ['.text.cmp-text--font-small', '.text'],
-      style: null,
+      selector: ['.separator.cmp-separator--hidden + .title', '.text.cmp-text--font-small'],
+      style: 'sidebar',
       blocks: [],
       defaultContent: ['.text'],
     },

@@ -1,60 +1,69 @@
-.accordion-faq .accordion-faq-item {
-  border: 1px solid #dadada;
-}
+/*
+ * Accordion FAQ
+ * Values extracted from wknd.site/us/en/faqs (.cmp-accordion); identical at all widths.
+ * Questions: uppercase Source Sans Pro 600 rows, 2px light rule, thin plus/minus icon.
+ * Answers: 14px/24.5px justified copy, no rule below an open answer.
+ */
 
-/* stylelint-disable-next-line no-descending-specificity */
-.accordion-faq .accordion-faq-item + .accordion-faq-item {
-  margin-top: 24px;
-}
-
-.accordion-faq .accordion-faq-item p {
-  margin-bottom: 0.8em;
+.accordion-faq {
+  color: var(--text-color);
 }
 
 .accordion-faq .accordion-faq-item-label {
   position: relative;
-  padding: 0 46px 0 16px;
+  display: block;
+
+  /* 13.333px button padding + 8px title indent; right side reserves the 21px icon */
+  padding: 13.333px 34.333px 13.333px 21.333px;
+  border-bottom: 2px solid var(--light-color);
+  color: #000;
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  line-height: normal;
+  text-transform: uppercase;
   cursor: pointer;
   list-style: none;
-  overflow: auto;
-  transition: background-color 0.2s;
-}
-
-.accordion-faq .accordion-faq-item-label:focus,
-.accordion-faq .accordion-faq-item-label:hover {
-  background-color: var(--light-color);
-}
-
-.accordion-faq .accordion-faq-item[open] .accordion-faq-item-label {
-  background-color: var(--light-color);
 }
 
 .accordion-faq .accordion-faq-item-label::-webkit-details-marker {
   display: none;
 }
 
+.accordion-faq .accordion-faq-item-label > p {
+  margin: 0;
+}
+
+/* plus icon: 21px x 2px horizontal bar + 2px x 19px vertical bar */
 .accordion-faq .accordion-faq-item-label::after {
   content: '';
   position: absolute;
-  top: 50%;
-  right: 18px;
-  transform: translateY(-50%) rotate(135deg);
-  width: 6px;
-  height: 6px;
-  border: 2px solid;
-  border-width: 2px 2px 0 0;
-  transition: transform 0.2s;
+  top: 13.333px;
+  right: 13.333px;
+  width: 21px;
+  height: 20px;
+  background:
+    linear-gradient(currentcolor, currentcolor) 0 10px / 21px 2px no-repeat,
+    linear-gradient(currentcolor, currentcolor) 50% 1px / 2px 19px no-repeat;
 }
 
+.accordion-faq .accordion-faq-item[open] .accordion-faq-item-label {
+  border-bottom: 0;
+}
+
+/* minus icon when open: hide the vertical bar */
 .accordion-faq .accordion-faq-item[open] .accordion-faq-item-label::after {
-  transform: translateY(-50%) rotate(-45deg);
+  background-size: 21px 2px, 0 0;
 }
 
 .accordion-faq .accordion-faq-item-body {
-  padding: 0 16px;
+  padding: 7px 0 0 7px;
+  font-size: var(--body-font-size-xs);
+  line-height: 21px;
 }
 
-.accordion-faq .accordion-faq-item[open] .accordion-faq-item-body {
-  border-top: 1px solid #dadada;
-  background-color: var(--background-color);
+.accordion-faq .accordion-faq-item-body p {
+  margin: 0 0 13.5px;
+  line-height: 24.5px;
+  text-align: justify;
 }

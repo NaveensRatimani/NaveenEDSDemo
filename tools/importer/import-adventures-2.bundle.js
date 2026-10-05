@@ -62,43 +62,13 @@ var CustomImportScript = (() => {
     if (contentCell.length) {
       cells.push([contentCell]);
     }
-    const block = WebImporter.Blocks.createBlock(document2, { name: "hero-feature", cells });
-    element.replaceWith(block);
-  }
-
-  // tools/importer/parsers/tabs-content.js
-  function parse2(element, { document: document2 }) {
-    const tabLabels = Array.from(element.querySelectorAll(".cmp-tabs__tab"));
-    const panels = Array.from(element.querySelectorAll(".cmp-tabs__tabpanel"));
-    const cells = [];
-    panels.forEach((panel, i) => {
-      const labelCell = [];
-      const labelEl = tabLabels[i];
-      const labelText = labelEl ? labelEl.textContent.trim() : "";
-      if (labelText) {
-        const p = document2.createElement("p");
-        p.textContent = labelText;
-        labelCell.push(p);
-      }
-      let contentSource = panel.querySelector(".cmp-contentfragment__elements");
-      if (!contentSource) {
-        contentSource = panel;
-      }
-      const contentCell = Array.from(contentSource.childNodes);
-      if (labelCell.length || contentCell.length) {
-        cells.push([labelCell.length ? labelCell : "", contentCell.length ? contentCell : ""]);
-      }
-    });
-    if (!cells.length) {
-      element.replaceWith(...element.childNodes);
-      return;
-    }
-    const block = WebImporter.Blocks.createBlock(document2, { name: "tabs-content", cells });
+    const variant = element.classList.contains("cmp-teaser--imagebottom") ? " (image-bottom)" : "";
+    const block = WebImporter.Blocks.createBlock(document2, { name: `hero-feature${variant}`, cells });
     element.replaceWith(block);
   }
 
   // tools/importer/parsers/cards-article.js
-  function parse3(element, { document: document2 }) {
+  function parse2(element, { document: document2 }) {
     let cards = Array.from(element.querySelectorAll("li.cmp-image-list__item"));
     if (!cards.length) {
       cards = Array.from(element.querySelectorAll(".cmp-image-list__item-content, article"));
@@ -127,15 +97,62 @@ var CustomImportScript = (() => {
 
   // tools/importer/transformers/wknd-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  var SITE_HOSTS = ["wknd.site", "www.wknd.site"];
+  function flattenListFilterTabs(element) {
+    element.querySelectorAll(".tabs.panelcontainer").forEach((tabs) => {
+      const allList = tabs.querySelector(".cmp-tabs__tabpanel .image-list");
+      if (allList) tabs.replaceWith(allList);
+    });
+  }
+  function rewriteInternalLinks(element) {
+    element.querySelectorAll("a[href]").forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || /^(mailto|tel|javascript):/i.test(href)) return;
+      let url;
+      try {
+        url = new URL(href, "https://wknd.site");
+      } catch (e) {
+        return;
+      }
+      if (!SITE_HOSTS.includes(url.hostname) || !/\.html$/i.test(url.pathname)) return;
+      const path = url.pathname.replace(/\.html$/i, "");
+      a.setAttribute("href", `${path}${url.search}${url.hash}`);
+    });
+  }
+  function boldStandaloneButtons(element, document2) {
+    element.querySelectorAll(".button:not(.cmp-button--icononly) a.cmp-button").forEach((a) => {
+      const label = (a.querySelector(".cmp-button__text") || a).textContent.trim();
+      if (!label || a.closest("strong")) return;
+      a.textContent = label;
+      const strong = document2.createElement("strong");
+      a.replaceWith(strong);
+      strong.append(a);
+    });
+  }
+  function markUnderlinedPageTitles(element, document2) {
+    element.querySelectorAll(".title.cmp-title--underline").forEach((title) => {
+      if (!title.querySelector("h1")) return;
+      const metadata = WebImporter.Blocks.createBlock(document2, {
+        name: "Section Metadata",
+        cells: { style: "title-underline" }
+      });
+      title.after(metadata);
+    });
+  }
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
+      flattenListFilterTabs(element);
+      boldStandaloneButtons(element, payload.document);
       WebImporter.DOMUtils.remove(element, [
         "#destination_publishing_iframe_wkndsite_0",
         "#toggleNav",
-        "#mobileNav"
+        "#mobileNav",
+        // content fragment titles repeat the page title and are always hidden on the source
+        ".cmp-contentfragment__title"
       ]);
     }
     if (hookName === TransformHook.afterTransform) {
+      markUnderlinedPageTitles(element, payload.document);
       WebImporter.DOMUtils.remove(element, [
         "header",
         "footer",
@@ -144,6 +161,7 @@ var CustomImportScript = (() => {
         "link",
         "noscript"
       ]);
+      rewriteInternalLinks(element);
     }
   }
 
@@ -192,8 +210,7 @@ var CustomImportScript = (() => {
   // tools/importer/import-adventures-2.js
   var parsers = {
     "hero-feature": parse,
-    "tabs-content": parse2,
-    "cards-article": parse3
+    "cards-article": parse2
   };
   var PAGE_TEMPLATE = {
     name: "adventures-2",
@@ -205,10 +222,6 @@ var CustomImportScript = (() => {
       {
         name: "hero-feature",
         instances: [".teaser.cmp-teaser--hero"]
-      },
-      {
-        name: "tabs-content",
-        instances: [".tabs.panelcontainer"]
       },
       {
         name: "cards-article",
@@ -242,10 +255,10 @@ var CustomImportScript = (() => {
       },
       {
         id: "s4",
-        name: "Adventure Filter Tabs + Cards",
-        selector: [".tabs.panelcontainer", ".image-list.list"],
+        name: "Adventure Cards",
+        selector: [".image-list.list"],
         style: null,
-        blocks: ["tabs-content", "cards-article"],
+        blocks: ["cards-article"],
         defaultContent: []
       },
       {

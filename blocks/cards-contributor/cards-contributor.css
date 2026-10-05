@@ -1,34 +1,158 @@
-.cards-contributor > ul {
-  list-style: none;
+/*
+ * Contributor cards: circular avatar, name, role and a row of dark social icon buttons.
+ * Each card column is 1/4 of a 1164px row (1136px content + 14px each side), i.e. the
+ * cards bleed 14px past the content column like the source grid.
+ */
+
+/* section layout: authors place one card per block, so consecutive single-card
+   blocks are laid out as grid columns; default content and multi-card blocks span the row */
+main .section.cards-contributor-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  padding-inline: max(0px, calc((100% - var(--content-max-width) - 2 * var(--content-gutter)) / 2));
+}
+
+main .section.cards-contributor-container > div {
+  grid-column: 1 / -1;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: calc(var(--content-max-width) + 2 * var(--content-gutter));
+  justify-self: center;
+}
+
+main .section.cards-contributor-container > .cards-contributor-wrapper {
+  max-width: none;
   margin: 0;
   padding: 0;
+}
+
+main .section.cards-contributor-container > .cards-contributor-wrapper:has(> .cards-contributor > ul > li:only-child) {
+  grid-column: auto;
+}
+
+/* small-print intro copy above each contributor grid (source .cmp-text--font-small) */
+main .section.cards-contributor-container > .default-content-wrapper > p {
+  font-size: var(--body-font-size-xs);
+  line-height: 35px;
+}
+
+/* block */
+.cards-contributor > ul {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 32px;
+  grid-template-columns: minmax(0, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .cards-contributor > ul > li {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  padding: 9px 28px 18px;
   text-align: center;
 }
 
+/* avatar */
 .cards-contributor .cards-contributor-card-image {
-  line-height: 0;
+  padding-bottom: 7px;
+}
+
+.cards-contributor .cards-contributor-card-image picture {
+  display: block;
 }
 
 .cards-contributor .cards-contributor-card-image img {
-  width: 160px;
-  height: 160px;
+  display: block;
+  width: 164px;
+  height: 164px;
+  margin: 7px auto;
   border-radius: 50%;
   object-fit: cover;
 }
 
+/* name, role */
 .cards-contributor .cards-contributor-card-body {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  margin-top: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards-contributor .cards-contributor-card-body > * {
+  flex: 0 0 100%;
+}
+
+.cards-contributor .cards-contributor-card-body h3 {
+  margin: 0 0 6px;
+  font-size: var(--heading-font-size-l);
+  line-height: 36px;
+}
+
+.cards-contributor .cards-contributor-card-body h5 {
+  margin: 0 0 3.5px;
+  font-size: var(--heading-font-size-s);
+  font-weight: 600;
+  line-height: 21px;
+  text-transform: uppercase;
+}
+
+/* social icon buttons */
+.cards-contributor .cards-contributor-card-body > .cards-contributor-social-item {
+  flex: 0 0 auto;
+  margin: 18px 0 0;
+  line-height: 0;
+}
+
+.cards-contributor a.cards-contributor-social:any-link {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  background-color: var(--text-color);
+  color: var(--light-color);
+  font-size: 0;
+  text-decoration: none;
+}
+
+.cards-contributor a.cards-contributor-social::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 14px;
+  height: 17.5px;
+  background-color: currentcolor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 100% 100%;
+}
+
+.cards-contributor a.cards-contributor-social-facebook::before {
+  width: 8.75px;
+  mask-image: url('/icons/social-facebook.svg');
+}
+
+.cards-contributor a.cards-contributor-social-twitter::before {
+  width: 21.875px;
+  mask-image: url('/icons/social-twitter.svg');
+}
+
+.cards-contributor a.cards-contributor-social-instagram::before {
+  width: 17.5px;
+  mask-image: url('/icons/social-instagram.svg');
+}
+
+@media (width >= 600px) {
+  main .section.cards-contributor-container,
+  .cards-contributor > ul:has(> li + li) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= 1200px) {
+  main .section.cards-contributor-container,
+  .cards-contributor > ul:has(> li + li) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  main .section.cards-contributor-container > div {
+    max-width: var(--content-max-width);
+  }
 }
