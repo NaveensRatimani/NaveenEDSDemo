@@ -36,8 +36,11 @@
   --heading-font-size-s: 24px;
   --heading-font-size-xs: 22px;
 
-  /* nav height */
-  --nav-height: 64px;
+  /* nav height: utility bar (25px) + main bar (92px) */
+  --nav-height: 117px;
+
+  /* width of the mobile nav drawer that pushes the page */
+  --nav-drawer-width: 275px;
 }
 
 /* fallback fonts */
@@ -70,6 +73,13 @@
   }
 }
 
+@media (width >= 1200px) {
+  :root {
+    /* nav height: utility bar (25px) + main bar (169px) */
+    --nav-height: 194px;
+  }
+}
+
 body {
   display: none;
   margin: 0;
@@ -86,6 +96,22 @@ body.appear {
 
 header {
   height: var(--nav-height);
+  background-color: #fff;
+}
+
+/* the open mobile nav drawer pushes the page to the right */
+body > main,
+body > footer {
+  transition: transform 0.5s;
+}
+
+body.nav-open {
+  overflow: hidden;
+}
+
+body.nav-open > main,
+body.nav-open > footer {
+  transform: translateX(var(--nav-drawer-width));
 }
 
 header .header,

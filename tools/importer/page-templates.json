@@ -149,12 +149,6 @@
           ]
         },
         {
-          "name": "tabs-content",
-          "instances": [
-            ".tabs.panelcontainer"
-          ]
-        },
-        {
           "name": "cards-article",
           "instances": [
             ".image-list.list"
@@ -202,14 +196,12 @@
         },
         {
           "id": "s4",
-          "name": "Adventure Filter Tabs + Cards",
+          "name": "Adventure Cards",
           "selector": [
-            ".tabs.panelcontainer",
             ".image-list.list"
           ],
           "style": null,
           "blocks": [
-            "tabs-content",
             "cards-article"
           ],
           "defaultContent": []

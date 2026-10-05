@@ -68,8 +68,31 @@ var CustomImportScript = (() => {
 
   // tools/importer/transformers/wknd-cleanup.js
   var TransformHook = { beforeTransform: "beforeTransform", afterTransform: "afterTransform" };
+  var SITE_HOSTS = ["wknd.site", "www.wknd.site"];
+  function flattenListFilterTabs(element) {
+    element.querySelectorAll(".tabs.panelcontainer").forEach((tabs) => {
+      const allList = tabs.querySelector(".cmp-tabs__tabpanel .image-list");
+      if (allList) tabs.replaceWith(allList);
+    });
+  }
+  function rewriteInternalLinks(element) {
+    element.querySelectorAll("a[href]").forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href || href.startsWith("#") || /^(mailto|tel|javascript):/i.test(href)) return;
+      let url;
+      try {
+        url = new URL(href, "https://wknd.site");
+      } catch (e) {
+        return;
+      }
+      if (!SITE_HOSTS.includes(url.hostname) || !/\.html$/i.test(url.pathname)) return;
+      const path = url.pathname.replace(/\.html$/i, "");
+      a.setAttribute("href", `${path}${url.search}${url.hash}`);
+    });
+  }
   function transform(hookName, element, payload) {
     if (hookName === TransformHook.beforeTransform) {
+      flattenListFilterTabs(element);
       WebImporter.DOMUtils.remove(element, [
         "#destination_publishing_iframe_wkndsite_0",
         "#toggleNav",
@@ -85,6 +108,7 @@ var CustomImportScript = (() => {
         "link",
         "noscript"
       ]);
+      rewriteInternalLinks(element);
     }
   }
 

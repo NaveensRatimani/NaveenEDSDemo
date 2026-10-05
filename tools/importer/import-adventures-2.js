@@ -3,7 +3,6 @@
 
 // PARSER IMPORTS
 import heroFeatureParser from './parsers/hero-feature.js';
-import tabsContentParser from './parsers/tabs-content.js';
 import cardsArticleParser from './parsers/cards-article.js';
 
 // TRANSFORMER IMPORTS
@@ -13,7 +12,6 @@ import sectionsTransformer from './transformers/wknd-sections.js';
 // PARSER REGISTRY
 const parsers = {
   'hero-feature': heroFeatureParser,
-  'tabs-content': tabsContentParser,
   'cards-article': cardsArticleParser,
 };
 
@@ -28,10 +26,6 @@ const PAGE_TEMPLATE = {
     {
       name: 'hero-feature',
       instances: ['.teaser.cmp-teaser--hero'],
-    },
-    {
-      name: 'tabs-content',
-      instances: ['.tabs.panelcontainer'],
     },
     {
       name: 'cards-article',
@@ -65,10 +59,10 @@ const PAGE_TEMPLATE = {
     },
     {
       id: 's4',
-      name: 'Adventure Filter Tabs + Cards',
-      selector: ['.tabs.panelcontainer', '.image-list.list'],
+      name: 'Adventure Cards',
+      selector: ['.image-list.list'],
       style: null,
-      blocks: ['tabs-content', 'cards-article'],
+      blocks: ['cards-article'],
       defaultContent: [],
     },
     {
