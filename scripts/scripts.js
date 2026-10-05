@@ -171,6 +171,21 @@ function decorateSectionMetadata(main) {
 }
 
 /**
+ * Byline sections (article author): social links render as icon buttons;
+ * the network is taken from the link text.
+ * @param {Element} main The main element
+ */
+function decorateBylineSocialLinks(main) {
+  main.querySelectorAll('.section.byline .default-content-wrapper > p > a:only-child').forEach((a) => {
+    const network = ['facebook', 'twitter', 'instagram']
+      .find((name) => a.textContent.trim().toLowerCase().includes(name));
+    if (!network) return;
+    a.classList.add('byline-social', `byline-social-${network}`);
+    a.parentElement.classList.add('byline-social-item');
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -180,6 +195,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateSectionMetadata(main);
+  decorateBylineSocialLinks(main);
   decorateBlocks(main);
   decorateButtons(main);
 }

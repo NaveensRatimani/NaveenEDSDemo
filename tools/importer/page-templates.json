@@ -212,7 +212,7 @@
             ".separator",
             ".cmp-separator"
           ],
-          "style": null,
+          "style": "divider",
           "blocks": [],
           "defaultContent": [
             ".separator"
@@ -347,9 +347,9 @@
           "id": "s4",
           "name": "Next Adventures - Climbing New Zealand",
           "selector": [
-            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"
+            ".separator"
           ],
-          "style": null,
+          "style": "divider",
           "blocks": [
             "hero-feature"
           ],
@@ -361,7 +361,7 @@
           "id": "s5",
           "name": "Where do you want to go",
           "selector": [
-            ".image-list.list"
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom + *"
           ],
           "style": null,
           "blocks": [
@@ -371,6 +371,16 @@
             ".title",
             ".button"
           ]
+        },
+        {
+          "id": "s6",
+          "name": "Closing divider",
+          "selector": [
+            ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom + * .separator"
+          ],
+          "style": "divider",
+          "blocks": [],
+          "defaultContent": []
         }
       ]
     },
@@ -537,4 +547,21 @@
           "id": "s4",
           "name": "Members Only",
           "selector": [
-            ".image-list.list + .title.cmp-tit
+            ".image-list.list + .title.cmp-title--underline"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-members"
+          ],
+          "defaultContent": [
+            ".title.cmp-title--underline",
+            ".text"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "projectType": "da"
+  }
+}

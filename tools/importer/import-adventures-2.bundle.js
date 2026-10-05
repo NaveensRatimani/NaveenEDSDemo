@@ -265,7 +265,7 @@ var CustomImportScript = (() => {
         id: "s5",
         name: "Separator",
         selector: [".separator", ".cmp-separator"],
-        style: null,
+        style: "divider",
         blocks: [],
         defaultContent: [".separator"]
       }

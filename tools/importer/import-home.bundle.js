@@ -289,44 +289,82 @@ var CustomImportScript = (() => {
     ],
     sections: [
       {
-        id: "s1",
-        name: "Hero Carousel",
-        selector: [".carousel.cmp-carousel--hero"],
-        style: null,
-        blocks: ["carousel-hero"],
-        defaultContent: []
+        "id": "s1",
+        "name": "Hero Carousel",
+        "selector": [
+          ".carousel.cmp-carousel--hero"
+        ],
+        "style": null,
+        "blocks": [
+          "carousel-hero"
+        ],
+        "defaultContent": []
       },
       {
-        id: "s2",
-        name: "Featured Article",
-        selector: [".teaser.cmp-teaser--featured"],
-        style: "grey",
-        blocks: ["columns-featured"],
-        defaultContent: []
+        "id": "s2",
+        "name": "Featured Article",
+        "selector": [
+          ".teaser.cmp-teaser--featured"
+        ],
+        "style": "grey",
+        "blocks": [
+          "columns-featured"
+        ],
+        "defaultContent": []
       },
       {
-        id: "s3",
-        name: "Recent Articles",
-        selector: [".cmp-title--underline"],
-        style: null,
-        blocks: ["cards-article"],
-        defaultContent: [".title.cmp-title--underline", ".button"]
+        "id": "s3",
+        "name": "Recent Articles",
+        "selector": [
+          ".cmp-title--underline"
+        ],
+        "style": null,
+        "blocks": [
+          "cards-article"
+        ],
+        "defaultContent": [
+          ".title.cmp-title--underline",
+          ".button"
+        ]
       },
       {
-        id: "s4",
-        name: "Next Adventures - Climbing New Zealand",
-        selector: [".teaser.cmp-teaser--hero.cmp-teaser--imagebottom"],
-        style: null,
-        blocks: ["hero-feature"],
-        defaultContent: [".title.cmp-title--underline"]
+        "id": "s4",
+        "name": "Next Adventures - Climbing New Zealand",
+        "selector": [
+          ".separator"
+        ],
+        "style": "divider",
+        "blocks": [
+          "hero-feature"
+        ],
+        "defaultContent": [
+          ".title.cmp-title--underline"
+        ]
       },
       {
-        id: "s5",
-        name: "Where do you want to go",
-        selector: [".image-list.list"],
-        style: null,
-        blocks: ["cards-article"],
-        defaultContent: [".title", ".button"]
+        "id": "s5",
+        "name": "Where do you want to go",
+        "selector": [
+          ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom + *"
+        ],
+        "style": null,
+        "blocks": [
+          "cards-article"
+        ],
+        "defaultContent": [
+          ".title",
+          ".button"
+        ]
+      },
+      {
+        "id": "s6",
+        "name": "Closing divider",
+        "selector": [
+          ".teaser.cmp-teaser--hero.cmp-teaser--imagebottom + * .separator"
+        ],
+        "style": "divider",
+        "blocks": [],
+        "defaultContent": []
       }
     ]
   };

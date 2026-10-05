@@ -164,3 +164,15 @@ export default {
       .replace(/\/$/, '')
       .replace(/\.html?$/, '');
     const path = WebImporter.FileUtils.sanitizePath(rawPath === '' ? '/index' : rawPath);
+
+    return [{
+      element: main,
+      path,
+      report: {
+        title: document.title,
+        template: PAGE_TEMPLATE.name,
+        blocks: pageBlocks.map((b) => b.name),
+      },
+    }];
+  },
+};

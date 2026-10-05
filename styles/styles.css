@@ -47,6 +47,11 @@ header {
   background-color: #fff;
 }
 
+/* page content starts 6px below the header, as on the source */
+body > main {
+  padding-top: 6px;
+}
+
 /* the open mobile nav drawer pushes the page to the right */
 body > main,
 body > footer {
@@ -183,7 +188,7 @@ a:hover {
 main .default-content-wrapper > ol:first-child {
   display: flex;
   flex-wrap: wrap;
-  margin: 11px 0 0;
+  margin: 5px 0 0;
   padding: 0;
   font-size: var(--body-font-size-xs);
   line-height: 21px;
@@ -339,6 +344,12 @@ main > .section:first-of-type {
   }
 }
 
+/* breadcrumb-only and page-title-only sections sit flush against the next section */
+main > .section:has(> .default-content-wrapper:only-child > h1:only-child),
+main > .section:has(> .default-content-wrapper:only-child > ol:first-child:only-child) {
+  margin-bottom: 0;
+}
+
 /* section metadata: grey band (e.g. featured article) */
 main .section.grey,
 main .section.light,
@@ -346,6 +357,26 @@ main .section.highlight {
   margin: 0 0 40px;
   padding: 40px 0;
   background-color: var(--light-color);
+}
+
+/* section metadata: divider — a light rule opening the section (source .cmp-separator, 64px spacing) */
+main > .section.divider {
+  padding-top: 24px;
+}
+
+main > .section.divider::before {
+  content: '';
+  display: block;
+  max-width: var(--content-max-width);
+  margin: 0 var(--content-gutter);
+  padding-bottom: 64px;
+  border-top: 2px solid var(--light-color);
+}
+
+@media (width >= 1200px) {
+  main > .section.divider::before {
+    margin: 0 auto;
+  }
 }
 
 main .section.dark {
@@ -371,6 +402,7 @@ main .section.sidebar .default-content-wrapper > p {
   main:has(> .section.sidebar) {
     display: grid;
     grid-template-columns: 1fr minmax(0, 748px) 125px minmax(0, 263px) 1fr;
+    grid-auto-flow: dense;
     align-items: start;
   }
 
@@ -378,11 +410,108 @@ main .section.sidebar .default-content-wrapper > p {
     grid-column: 1 / -1;
   }
 
-  main:has(> .section.sidebar) > .section:has(+ .section.sidebar) {
+  /* the content column: the section before the sidebar, plus an author byline section */
+  main:has(> .section.sidebar) > .section:has(+ .section.sidebar),
+  main:has(> .section.sidebar) > .section:has(+ .section.byline + .section.sidebar) {
     grid-column: 2;
   }
 
   main:has(> .section.sidebar) > .section.sidebar {
     grid-column: 4;
   }
+}
+
+/* section metadata: byline — article author row (avatar, name, role, social buttons) under a light rule */
+main > .section.byline {
+  margin-top: 24px;
+}
+
+main .section.byline .default-content-wrapper {
+  display: grid;
+  grid-template-columns: 85px minmax(0, 1fr) repeat(3, 48px);
+  align-items: start;
+  padding-top: 64px;
+  border-top: 2px solid var(--light-color);
+}
+
+main .section.byline .default-content-wrapper > p:has(> picture) {
+  grid-area: 1 / 1 / 3 / 2;
+  margin: 0;
+  line-height: 0;
+}
+
+main .section.byline .default-content-wrapper > p > picture img {
+  width: 60px;
+  height: 60px;
+  margin: 7px 0;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+main .section.byline .default-content-wrapper > h2 {
+  grid-area: 1 / 2;
+  margin: 0 0 4px;
+  padding-top: 8px;
+  font-size: var(--heading-font-size-l);
+  line-height: 36px;
+}
+
+main .section.byline .default-content-wrapper > h2::after {
+  content: none;
+}
+
+main .section.byline .default-content-wrapper > h2 + p {
+  grid-area: 2 / 2;
+  margin: 0 0 13.5px;
+  color: #696969;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+main .section.byline .default-content-wrapper > p.byline-social-item {
+  grid-row: 1;
+  margin: 0;
+  line-height: 0;
+}
+
+main .section.byline a.byline-social:any-link {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  overflow: hidden;
+  background-color: var(--text-color);
+  color: var(--light-color);
+  font-size: 0;
+  text-decoration: none;
+}
+
+main .section.byline a.byline-social::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  height: 17.5px;
+  transform: translateX(-50%);
+  background-color: currentcolor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 100% 100%;
+}
+
+main .section.byline a.byline-social-facebook::before {
+  width: 8.75px;
+  mask-image: url('/icons/social-facebook.svg');
+}
+
+main .section.byline a.byline-social-twitter::before {
+  width: 21.875px;
+  mask-image: url('/icons/social-twitter.svg');
+}
+
+main .section.byline a.byline-social-instagram::before {
+  width: 17.5px;
+  mask-image: url('/icons/social-instagram.svg');
 }

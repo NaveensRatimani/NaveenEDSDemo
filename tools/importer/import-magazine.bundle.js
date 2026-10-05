@@ -223,6 +223,14 @@ var CustomImportScript = (() => {
         defaultContent: [".text", ".title", ".image"]
       },
       {
+        id: "s3b",
+        name: "Author byline",
+        selector: [".experiencefragment:has(.cmp-byline)"],
+        style: "byline",
+        blocks: [],
+        defaultContent: [".experiencefragment"]
+      },
+      {
         id: "s4",
         name: "Sidebar (Share this story / Up next)",
         selector: [".cmp-layoutcontainer--sidebar", ".sharing", ".list.cmp-list--upnext"],
